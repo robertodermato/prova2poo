@@ -14,12 +14,12 @@ public class AppPessoa {
         ArrayList<Pessoa> lista = new ArrayList<>();
 
         Pessoa p1 = new Pessoa("Roberto", Pessoa.Genero.MASC, 43, "roberto@gmail.com");
-        Pessoa p2 = new Pessoa ("Pedro", Pessoa.Genero.MASC, 20, "pedro@gmail.com");
-        Pessoa p3 = new Pessoa ("Lucas", Pessoa.Genero.MASC, 19, "lucas@gmail.com");
-        Pessoa p4 = new Pessoa ("Bernardo", Pessoa.Genero.MASC, 3, "bernardo@gmail.com");
-        Pessoa p5 = new Pessoa ("Adriana", Pessoa.Genero.FEM, 18, "adriana@gmail.com");
-        Pessoa p6 = new Pessoa ("Ana Maria", Pessoa.Genero.FEM, 73, "ana@gmail.com");
-        Pessoa p7 = new Pessoa ("Gladir", Pessoa.Genero.FEM, 72, "gladir@gmail.com");
+        Pessoa p2 = new Pessoa("Pedro", Pessoa.Genero.MASC, 20, "pedro@gmail.com");
+        Pessoa p3 = new Pessoa("Lucas", Pessoa.Genero.MASC, 19, "lucas@gmail.com");
+        Pessoa p4 = new Pessoa("Bernardo", Pessoa.Genero.MASC, 3, "bernardo@gmail.com");
+        Pessoa p5 = new Pessoa("Adriana", Pessoa.Genero.FEM, 18, "adriana@gmail.com");
+        Pessoa p6 = new Pessoa("Ana Maria", Pessoa.Genero.FEM, 73, "ana@gmail.com");
+        Pessoa p7 = new Pessoa("Gladir", Pessoa.Genero.FEM, 72, "gladir@gmail.com");
 
         lista.add(p1);
         lista.add(p2);
@@ -39,16 +39,22 @@ public class AppPessoa {
                 .forEach(p -> System.out.println(p));
 
         //Exibir o email das mulheres maiores de 60 anos
-        System.out.println("\nemail das mulheres com mais de 60 anos");
+        System.out.println("\nE-mail das mulheres com mais de 60 anos");
         lista
                 .stream()
                 .filter(p -> p.getIdade() > 60)
-                .filter(p -> p.getGenero()== Pessoa.Genero.FEM)
-                .forEach(p-> System.out.println("Email: " + p.getEmail()));
+                .filter(p -> p.getGenero() == Pessoa.Genero.FEM)
+                .forEach(p -> System.out.println("Email: " + p.getEmail()));
 
-//        Exibir a média de idade dos homens
-
-
+        //Exibir a média de idade dos homens
+        double average =
+                lista
+                        .stream()
+                        .filter(p -> p.getGenero() == Pessoa.Genero.MASC)
+                        .mapToInt(p -> p.getIdade())
+                        .average()
+                        .getAsDouble();
+        System.out.println("\nMédia de idade dos homens é: " + average);
 
     }
 
